@@ -7,7 +7,7 @@ import (
     "path"
 
     htgotts "github.com/hegedustibor/htgo-tts"
-    voices "github.com/hegedustibor/htgo-tts/voices"
+    // voices "github.com/hegedustibor/htgo-tts/voices"
 )
 
 // App struct
@@ -26,7 +26,7 @@ func (a *App) startup(ctx context.Context) {
     a.ctx = ctx
 }
 
-func (a *App) TextToSpeech(text string) {
+func (a *App) TextToSpeech(text, language string) {
     var userHome string
     if runtime.GOOS == "windows" {
         userHome = os.Getenv("USERPROFILE")
@@ -36,6 +36,6 @@ func (a *App) TextToSpeech(text string) {
 
     folderPath := path.Join(userHome, "Desktop", "TTS")
 
-    speech := htgotts.Speech{Language: voices.English, Folder: folderPath}
+    speech := htgotts.Speech{Language: language , Folder: folderPath}
     speech.Speak(text)
 }

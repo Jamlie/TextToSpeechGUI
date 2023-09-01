@@ -41,7 +41,12 @@ function App() {
             <h1>Convert Text to Speech</h1>
             <MDBInputGroup>
                 <MDBInput label="Enter your text" onChange={(e) => setInput(e.target.value)} />
-                <MDBBtn color="dark" onClick={textToSpeech} size='sm'>Text to Speech</MDBBtn>
+                {
+                    input !== "" ?
+                    <MDBBtn color="dark" onClick={textToSpeech} size='sm'>Text to Speech</MDBBtn>
+                    :
+                    <MDBBtn color="dark" disabled size='sm'>Text to Speech</MDBBtn>
+                }
             </MDBInputGroup>
         </>
     )

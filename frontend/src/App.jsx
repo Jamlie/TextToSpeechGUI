@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { TextToSpeech } from '../wailsjs/go/main/App';
 import "./App.css"
-import { TextField, Select, MenuItem, Alert } from '@mui/material';
+import { TextField, Select, MenuItem, Switch } from '@mui/material';
 import { MDBInputGroup, MDBBtn } from 'mdb-react-ui-kit';
 
 const languages = ["af", "ar", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de", "el", "en", "en-AU",
@@ -13,14 +13,10 @@ const languages = ["af", "ar", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de", "
 function App() {
     const [input, setInput] = useState('');
     const [language, setLanguage] = useState('en');
-    const [showAlert, setShowAlert] = useState(false);
+    const [fileName, setFileName] = useState('');
 
     function textToSpeech() {
-        if (language === '') {
-            setShowAlert(true);
-            return;
-        }
-        TextToSpeech(input, language);
+        TextToSpeech(input, language, fileName);
     }
 
     return (
@@ -50,14 +46,9 @@ function App() {
                         <MDBBtn color="dark" disabled>Convert to Speech</MDBBtn>
                 }
             </MDBInputGroup>
-
-            {
-                showAlert && (
-                    <Alert severity="error">
-                        Please select a <strong>language</strong>
-                    </Alert>
-                )
-            }
+            <TextField label="File name" onChange={(e) => setFileName(e.target.value)}
+                sx={{ width: '100%', mt: 1 }}
+            />
         </>
     )
 }

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TextToSpeech } from '../wailsjs/go/main/App';
 import "./App.css"
-import { TextField, Select, MenuItem, Switch } from '@mui/material';
+import { TextField, Select, MenuItem, Checkbox, Alert } from '@mui/material';
 import { MDBInputGroup, MDBBtn } from 'mdb-react-ui-kit';
 
 const languages = ["af", "ar", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de", "el", "en", "en-AU",
@@ -14,10 +14,25 @@ function App() {
     const [input, setInput] = useState('');
     const [language, setLanguage] = useState('en');
     const [fileName, setFileName] = useState('');
+    const [allowFileName, setAllowFileName] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
 
     function textToSpeech() {
+        if (allowFileName && (fileName === '')) {
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 5000);
+            return;
+        }
         TextToSpeech(input, language, fileName);
     }
+
+    useEffect(() => {
+        if (showAlert && (fileName !== '')) {
+            setShowAlert(false);
+        }
+    }, [fileName, showAlert]);
 
     return (
         <>
@@ -46,9 +61,39 @@ function App() {
                         <MDBBtn color="dark" disabled>Convert to Speech</MDBBtn>
                 }
             </MDBInputGroup>
-            <TextField label="File name" onChange={(e) => setFileName(e.target.value)}
-                sx={{ width: '100%', mt: 1 }}
-            />
+
+            <MDBInputGroup>
+                {
+                    allowFileName ?
+                        <TextField label="File name" onChange={(e) => setFileName(e.target.value)}
+                            sx={{ width: '100%', mt: 1 }}
+                        /> :
+                        <TextField label="File name" disabled
+                            sx={{ width: '100%', mt: 1 }}
+                        />
+                }
+                <Checkbox checked={allowFileName} onChange={(e) => setAllowFileName(e.target.checked)}
+                    sx={{ 
+                        color: "black",
+                        '&.Mui-checked': {
+                            color: "black",
+                        },
+                        mt: 1,
+                        ":hover": {
+                            backgroundColor: "#00121212",
+                            borderRadius: "5px",
+
+                        }
+                    }}
+                />
+            </MDBInputGroup>
+            {
+                showAlert && (fileName === "") ?
+                    <Alert severity='error' sx={{ mt: 1, width: "100%" }}>
+                        File name cannot be empty, please enter a valid file name or uncheck the checkbox.
+                    </Alert> :
+                    null
+            }
         </>
     )
 }

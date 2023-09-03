@@ -24,7 +24,6 @@ export default function ChangedFileName({ allowFileName, setAllowFileName, setFi
                         ":hover": {
                             backgroundColor: "#00121212",
                             borderRadius: "5px",
-
                         }
                     }}
                 />

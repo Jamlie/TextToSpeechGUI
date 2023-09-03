@@ -12,9 +12,9 @@ function App() {
             <h1 style={{ userSelect: "none" }}>Convert Text to Speech</h1>
             <br />
             <br />
-            <ButtonGroup variant="text">
-                <Button onClick={() => setPage(1)}>Text</Button>
-                <Button onClick={() => setPage(2)}>File</Button>
+            <ButtonGroup color="primary" variant="text" disableRipple>
+                <Button onClick={() => setPage(1)} sx={{ color: "black", ":hover": { backgroundColor: "#00121212" } }}>Text</Button>
+                <Button onClick={() => setPage(2)} sx={{ color: "black", ":hover": { backgroundColor: "#00121212" } }}>File</Button>
             </ButtonGroup>
 
             <br />

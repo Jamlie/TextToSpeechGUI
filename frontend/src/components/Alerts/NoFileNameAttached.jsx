@@ -1,9 +1,8 @@
 import { Alert } from '@mui/material';
 
-export default function NoFileAttached({ showAlert, fileName }) {
+export default function NoFileAttachedAlert({ showAlert, fileName }) {
     return (
         <>
-
             {
                 showAlert && (fileName === "") ?
                     <Alert severity='error' sx={{ mt: 1, width: "100%" }}>

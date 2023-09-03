@@ -9,12 +9,12 @@ const languages = ["af", "ar", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de", "
     "si", "sk", "sq", "sr", "su", "sv", "sw", "ta", "te", "th", "tl", "tr", "uk", "ur", "vi", "zh"
 ];
 
-export default function UserPromptCoverter({ allowFileName = false, fileName = '', setShowAlert}) {
-    const [input, setInput] = useState('');
-    const [language, setLanguage] = useState('en');
+export default function UserPromptCoverter({ allowFileName = false, fileName = "", setShowAlert }) {
+    const [input, setInput] = useState("");
+    const [language, setLanguage] = useState("en");
 
     function textToSpeech() {
-        if (allowFileName && (fileName === '')) {
+        if (allowFileName && (fileName === "")) {
             setShowAlert(true);
             setTimeout(() => {
                 setShowAlert(false);
@@ -23,14 +23,14 @@ export default function UserPromptCoverter({ allowFileName = false, fileName = '
         }
 
         TextToSpeech(input, language, fileName);
-        setInput('');
+        setInput("");
     }
 
     return (
         <>
             <MDBInputGroup>
                 <TextField value={input} label="Enter your text" onChange={(e) => setInput(e.target.value)}
-                    sx={{ width: '100%' }}
+                    sx={{ width: "100%" }}
                 />
                 <Select
                     value={language}

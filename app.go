@@ -25,13 +25,13 @@ func (a *App) startup(ctx context.Context) {
     a.ctx = ctx
 }
 
-func (a *App) TextToSpeech(text, language, fileName string) {
+func (a *App ) TextToSpeech(text, language, fileName string) {
     var userHome string
     if runtime.GOOS == "windows" {
         if fileName == "" {
             fileName = uuid.New().String() + ".mp3"
         } else {
-            fileName = generateFileName(fileName)
+            fileName = generateFileName(fileName) 
         }
         userHome = os.Getenv("USERPROFILE")
     } else {

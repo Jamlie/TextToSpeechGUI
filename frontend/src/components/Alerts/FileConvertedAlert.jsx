@@ -6,7 +6,7 @@ export default function FileConvertedAlert({ showAlert, fileName }) {
             {
                 showAlert && (fileName === "") ?
                     <Alert severity="success" sx={{ mt: 1, width: "100%" }}>
-                        File has been converted into speech successfully, please check the file { fileName }
+                        File has been converted into speech successfully!
                     </Alert> :
                     null
             }

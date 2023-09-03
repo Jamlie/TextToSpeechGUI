@@ -2,13 +2,14 @@ import { useState } from "react"
 import "./App.css"
 import { Button, ButtonGroup } from "@mui/material"
 import TextToSpeechConverter from "./components/TextToSpeechConverter"
+import FileToTextConverter from "./components/FileToTextConverter"
 
 function App() {
     const [page, setPage] = useState(1)
 
     return (
         <>
-            <h1 style={{userSelect: "none"}}>Convert Text to Speech</h1>
+            <h1 style={{ userSelect: "none" }}>Convert Text to Speech</h1>
             <br />
             <br />
             <ButtonGroup variant="text">
@@ -20,9 +21,9 @@ function App() {
             <br />
             {
                 page === 1 ?
-                <TextToSpeechConverter />
-                :
-                <h1>File</h1>
+                    <TextToSpeechConverter />
+                    :
+                    <FileToTextConverter />
             }
         </>
     )

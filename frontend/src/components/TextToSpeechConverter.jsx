@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import UserPromptCoverter from './UserPromptWithSubmit/UserPromptCoverter';
 import ChangedFileName from './ChangeFileName/ChangedFileName';
-import NoFileNameAttachedForTextAlert from "./Alerts/NoFileNameAttachedForTextAlert"
+import NoFileNameAttached from "./Alerts/NoFileNameAttached";
 
 export default function TextToSpeechConverter() {
     const [fileName, setFileName] = useState('');
@@ -18,11 +18,7 @@ export default function TextToSpeechConverter() {
         <>
             <UserPromptCoverter fileName={fileName} allowFileName={allowFileName} setShowAlert={setShowErrorAlert} />
             <ChangedFileName allowFileName={allowFileName} setFileName={setFileName} setAllowFileName={setAllowFileName} />
-            <NoFileNameAttachedForTextAlert showAlert={showErrorAlert} fileName={fileName} />
-            {/*<OrLine />
-            <FileUploadConverter fileName={fileName} allowFileName={allowFileName} setShowErrorAlert={setShowErrorAlert} setShowDoneAlert={setShowFileUploadedAlert} />
-            <NoFileNameAttachedAlert showAlert={showErrorAlert} fileName={fileName} />
-            <FileConvertedAlert showAlert={showFileUploadAlert} fileName={fileName} />*/}
+            <NoFileNameAttached showAlert={showErrorAlert} fileName={fileName} />
         </>
     )
 }

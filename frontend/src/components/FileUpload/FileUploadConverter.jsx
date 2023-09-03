@@ -33,11 +33,20 @@ export default function FileUploadConverter({ fileName = "", allowFileName = fal
     }
 
     function fileToSpeech() {
+        if (allowFileName && (fileName === "")) {
+            setShowErrorAlert(true);
+            setTimeout(() => {
+                setShowErrorAlert(false);
+            }, 5000);
+            return;
+        }
         fileToText();
         if (text) {
             TextToSpeech(text, language, fileName);
-            setText("");
-            setFile(null);
+            setShowDoneAlert(true);
+            setTimeout(() => {
+                setShowDoneAlert(false);
+            }, 5000);
         }
     }
 
@@ -45,7 +54,7 @@ export default function FileUploadConverter({ fileName = "", allowFileName = fal
         if (file) {
             fileToText();
         }
-    }, [file])
+    }, [file]);
 
     return (
         <MDBInputGroup>
